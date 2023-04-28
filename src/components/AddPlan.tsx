@@ -53,8 +53,10 @@ const AddPlan = () => {
     <Container maxW={"4xl"}>
       <Flex flexDir="column" alignItems={"center"}>
         <Box w="50%" mt={8} color={"#FFF"}>
-          <Heading>Welcome, {userName || "Guest"}</Heading>
-          <Box mt="3">
+          <Heading fontFamily={"Raleway"} fontWeight="800">
+            Welcome, {userName || "Guest"}
+          </Heading>
+          <Box mt="3" fontFamily={"Signika"}>
             <form>
               <FormControl>
                 <Input
@@ -122,7 +124,14 @@ const AddPlan = () => {
           </Box>
         </Box>
         {/* display saved plans */}
-        <Flex flexDir="row" gap={3} color="#FFF" mt="50px" wrap="wrap">
+        <Flex
+          flexDir="row"
+          gap={3}
+          color="#FFF"
+          mt="50px"
+          fontFamily={"Signika"}
+          maxW="80%"
+        >
           {userList.map((list: any) => {
             return (
               <Box border="1px solid #000" key={list} p={5}>
@@ -155,17 +164,29 @@ const AddPlan = () => {
                             <option value="business">Business</option>
                           </Select>
                         </Box>
-                        <Button onClick={() => {}}>UPDATE</Button>
+                        <Button onClick={() => {}}>SAVE</Button>
                         <Button onClick={() => setShowForm(false)}>
                           CANCEL
                         </Button>
                       </Stack>
                     </form>
                   ) : (
-                    <Button onClick={() => setShowForm(true)}>SAVE</Button>
+                    <Button
+                      onClick={() => setShowForm(true)}
+                      className="card-btn"
+                      bgColor={"transparent"}
+                      _hover={{ backgroundColor: "transparent" }}
+                    >
+                      UPDATE
+                    </Button>
                   )}
                   <Box mt="5">
-                    <Button onClick={() => handleDeletePlan(list.id)}>
+                    <Button
+                      onClick={() => handleDeletePlan(list.id)}
+                      className="card-btn"
+                      bgColor={"transparent"}
+                      _hover={{ backgroundColor: "transparent" }}
+                    >
                       DELETE
                     </Button>
                   </Box>
