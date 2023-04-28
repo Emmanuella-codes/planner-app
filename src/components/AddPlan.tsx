@@ -115,6 +115,7 @@ const AddPlan = () => {
                     onClick={handleSavePlan}
                     fontWeight={700}
                     w={"50%"}
+                    _hover={{ backgroundColor: "transparent" }}
                   >
                     SAVE
                   </Button>
@@ -164,10 +165,24 @@ const AddPlan = () => {
                             <option value="business">Business</option>
                           </Select>
                         </Box>
-                        <Button onClick={() => {}}>SAVE</Button>
-                        <Button onClick={() => setShowForm(false)}>
-                          CANCEL
-                        </Button>
+                        <Box>
+                          <Button
+                            onClick={() => {}}
+                            bgColor={"transparent"}
+                            className="card-btn"
+                            _hover={{ backgroundColor: "transparent" }}
+                          >
+                            SAVE
+                          </Button>
+                          <Button
+                            onClick={() => setShowForm(false)}
+                            className="danger-btn"
+                            bgColor={"transparent"}
+                            _hover={{ backgroundColor: "transparent" }}
+                          >
+                            CANCEL
+                          </Button>
+                        </Box>
                       </Stack>
                     </form>
                   ) : (
@@ -183,7 +198,7 @@ const AddPlan = () => {
                   <Box mt="5">
                     <Button
                       onClick={() => handleDeletePlan(list.id)}
-                      className="card-btn"
+                      className="danger-btn"
                       bgColor={"transparent"}
                       _hover={{ backgroundColor: "transparent" }}
                     >
