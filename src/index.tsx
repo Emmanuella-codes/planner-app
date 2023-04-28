@@ -7,6 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import usersReducer from "./features/UserPlan";
+import "./global.css"
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");

@@ -1,16 +1,22 @@
 import {
   Box,
   Button,
+  Container,
   Flex,
   FormControl,
   Heading,
   Input,
   Select,
   Text,
+  Textarea,
+  Stack,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPlan, deletePlan } from "../features/UserPlan";
+import "./styles/index.css";
 
 const AddPlan = () => {
   const dispatch = useDispatch();
@@ -19,6 +25,7 @@ const AddPlan = () => {
   const [userName, setUserName] = useState("");
   const [userPlan, setUserPlan] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   const handleUserName = (event: any) => {
     setUserName(event.target.value);
@@ -43,84 +50,132 @@ const AddPlan = () => {
   };
 
   return (
-    <>
-      <Flex flexDir="column">
-        <Box w="30%">
+    <Container maxW={"4xl"}>
+      <Flex flexDir="column" alignItems={"center"}>
+        <Box w="50%" mt={8} color={"#FFF"}>
           <Heading>Welcome, {userName || "Guest"}</Heading>
-          <form>
-            <FormControl>
-              <Input
-                id="name"
-                type="text"
-                name="name"
-                placeholder="what's your name?"
-                value={userName}
-                onChange={handleUserName}
-              />
-            </FormControl>
-            <Text>Add Plan</Text>
-            <FormControl>
-              <Input
-                id="task"
-                type="text"
-                placeholder="task/plan"
-                onChange={(e: any) => {
-                  setUserPlan(e.target.value);
-                }}
-              />
-            </FormControl>
-            <Select
-              placeholder="select category"
-              id="category"
-              name="category"
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-            >
-              <option value="personal">Personal</option>
-              <option value="business">Business</option>
-            </Select>
-            <Button onClick={handleSavePlan}>SAVE</Button>
-          </form>
+          <Box mt="3">
+            <form>
+              <FormControl>
+                <Input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="what's your name?"
+                  value={userName}
+                  onChange={handleUserName}
+                  w={"60%"}
+                />
+              </FormControl>
+              <Text mt={4} mb={3}>
+                Add Plan
+              </Text>
+              <Stack spacing={4}>
+                <Box>
+                  <Textarea
+                    id="task"
+                    placeholder="task/plan"
+                    onChange={(e: any) => {
+                      setUserPlan(e.target.value);
+                    }}
+                  />
+                </Box>
+                <Box>
+                  <Select
+                    placeholder="change category"
+                    id="update-category"
+                    name="category"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
+                    bgColor={"#252525"}
+                    _hover={{ backgroundColor: "#000" }}
+                  >
+                    <option
+                      className="dropdown-btn"
+                      value="personal"
+                      style={{ backgroundColor: "#252525" }}
+                    >
+                      Personal
+                    </option>
+                    <option
+                      className="dropdown-btn"
+                      value="business"
+                      style={{ backgroundColor: "#252525" }}
+                    >
+                      Business
+                    </option>
+                  </Select>
+                </Box>
+                <Box>
+                  <Button
+                    className="save-btn"
+                    bgColor={"transparent"}
+                    onClick={handleSavePlan}
+                    fontWeight={700}
+                    w={"50%"}
+                  >
+                    SAVE
+                  </Button>
+                </Box>
+              </Stack>
+            </form>
+          </Box>
         </Box>
         {/* display saved plans */}
-        <Flex display="column" gap={3}>
+        <Flex flexDir="row" gap={3} color="#FFF" mt="50px" wrap="wrap">
           {userList.map((list: any) => {
             return (
-              <Box border="1px solid #000" key={list}>
+              <Box border="1px solid #000" key={list} p={5}>
                 <Text>{list.name}</Text>
-                <Text>{list.category}</Text>
+                <RadioGroup defaultValue="1">
+                  <Radio value="1">{list.category}</Radio>
+                </RadioGroup>
                 <Box>
-                  <form>
-                    <FormControl>
-                      <Input
-                        id="update-task"
-                        type="text"
-                        placeholder="task/plan"
-                        onChange={(e: any) => {
-                          setUserPlan(e.target.value);
-                        }}
-                      />
-                    </FormControl>
-                    <Select
-                      placeholder="change category"
-                      id="update-category"
-                      name="category"
-                      value={selectedCategory}
-                      onChange={handleCategoryChange}
-                    >
-                      <option value="personal">Personal</option>
-                      <option value="business">Business</option>
-                    </Select>
-                    <Button onClick={() => {}}>UPDATE</Button>
-                    <Button onClick={() => handleDeletePlan(list.id)}>DELETE</Button>
-                  </form>
+                  {showForm ? (
+                    <form>
+                      <Stack spacing={4}>
+                        <Box>
+                          <Textarea
+                            id="task"
+                            placeholder="task/plan"
+                            onChange={(e: any) => {
+                              setUserPlan(e.target.value);
+                            }}
+                          />
+                        </Box>
+                        <Box>
+                          <Select
+                            placeholder="change category"
+                            id="update-category"
+                            name="category"
+                            value={selectedCategory}
+                            onChange={handleCategoryChange}
+                          >
+                            <option value="personal">Personal</option>
+                            <option value="business">Business</option>
+                          </Select>
+                        </Box>
+                        <Button onClick={() => {}}>UPDATE</Button>
+                        <Button onClick={() => setShowForm(false)}>
+                          CANCEL
+                        </Button>
+                      </Stack>
+                    </form>
+                  ) : (
+                    <Button onClick={() => setShowForm(true)}>SAVE</Button>
+                  )}
+                  <Box mt="5">
+                    <Button onClick={() => handleDeletePlan(list.id)}>
+                      DELETE
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
             );
           })}
         </Flex>
       </Flex>
-    </>
+    </Container>
   );
 };
 
