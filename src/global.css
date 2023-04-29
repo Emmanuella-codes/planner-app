@@ -1,0 +1,13 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  background-color: #212121 !important;
+  color: #fff;
+  font-family: 'Signika', sans-serif;
+}
+
