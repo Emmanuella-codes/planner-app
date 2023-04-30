@@ -10,13 +10,12 @@ import {
   Text,
   Textarea,
   Stack,
-  RadioGroup,
-  Radio,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addPlan, deletePlan } from "../features/UserPlan";
+import { addPlan } from "../features/UserPlan";
 import "./styles/index.css";
+import SavedPlans from "./SavedPlans";
 
 const AddPlan = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ const AddPlan = () => {
   const [userName, setUserName] = useState("");
   const [userPlan, setUserPlan] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [showForm, setShowForm] = useState(false);
 
   const handleUserName = (event: any) => {
     setUserName(event.target.value);
@@ -43,10 +41,6 @@ const AddPlan = () => {
         id: userList.length + 1,
       })
     );
-  };
-
-  const handleDeletePlan = (id: number) => {
-    dispatch(deletePlan(id));
   };
 
   return (
@@ -125,91 +119,7 @@ const AddPlan = () => {
           </Box>
         </Box>
         {/* display saved plans */}
-        <Flex
-          flexDir="row"
-          gap={3}
-          color="#FFF"
-          mt="50px"
-          fontFamily={"Signika"}
-          maxW="80%"
-        >
-          {userList.map((list: any) => {
-            return (
-              <Box border="1px solid #000" key={list} p={5}>
-                <Text>{list.name}</Text>
-                <RadioGroup defaultValue="1">
-                  <Radio value="1">{list.category}</Radio>
-                </RadioGroup>
-                <Box>
-                  {showForm ? (
-                    <form>
-                      <Stack spacing={4}>
-                        <Box>
-                          <Textarea
-                            id="task"
-                            placeholder="task/plan"
-                            onChange={(e: any) => {
-                              setUserPlan(e.target.value);
-                            }}
-                          />
-                        </Box>
-                        <Box>
-                          <Select
-                            placeholder="change category"
-                            id="update-category"
-                            name="category"
-                            value={selectedCategory}
-                            onChange={handleCategoryChange}
-                          >
-                            <option value="personal">Personal</option>
-                            <option value="business">Business</option>
-                          </Select>
-                        </Box>
-                        <Box>
-                          <Button
-                            onClick={() => {}}
-                            bgColor={"transparent"}
-                            className="card-btn"
-                            _hover={{ backgroundColor: "transparent" }}
-                          >
-                            SAVE
-                          </Button>
-                          <Button
-                            onClick={() => setShowForm(false)}
-                            className="danger-btn"
-                            bgColor={"transparent"}
-                            _hover={{ backgroundColor: "transparent" }}
-                          >
-                            CANCEL
-                          </Button>
-                        </Box>
-                      </Stack>
-                    </form>
-                  ) : (
-                    <Button
-                      onClick={() => setShowForm(true)}
-                      className="card-btn"
-                      bgColor={"transparent"}
-                      _hover={{ backgroundColor: "transparent" }}
-                    >
-                      UPDATE
-                    </Button>
-                  )}
-                  <Box mt="5">
-                    <Button
-                      onClick={() => handleDeletePlan(list.id)}
-                      className="danger-btn"
-                      bgColor={"transparent"}
-                      _hover={{ backgroundColor: "transparent" }}
-                    >
-                      DELETE
-                    </Button>
-                  </Box>
-                </Box>
-              </Box>
-            );
-          })}
-        </Flex>
+        <SavedPlans />
       </Flex>
     </Container>
   );

@@ -73,7 +73,7 @@
   transition: 500ms;
   border-radius: 5px;
   background: linear-gradient(145deg, #2e2d2d, #212121);
-  -webkit-box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
+  -webkit-box-shadow: -1px -5px 15px #1f212b, 5px 5px 15px #1f212b,
     inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;
   box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b,
     inset 5px 5px 10px #212121, inset -5px -5px 10px #212121;

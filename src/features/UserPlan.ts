@@ -21,8 +21,20 @@ export const userPlanSlice = createSlice({
     deletePlan: (state: { value: Plan[] }, action: PayloadAction<number>) => {
       state.value = state.value.filter((plan) => plan.id !== action.payload);
     },
+    updatePlan: (state: { value: Plan[] }, action: PayloadAction<Plan>) => {
+      state.value.map((p) => {
+        if (p.id === action.payload.id) {
+          return {
+            ...p,
+            name: action.payload.name,
+            category: action.payload.category,
+          };
+        }
+        return p;
+      });
+    },
   },
 });
 
-export const { addPlan, deletePlan } = userPlanSlice.actions;
+export const { addPlan, deletePlan, updatePlan } = userPlanSlice.actions;
 export default userPlanSlice.reducer;
