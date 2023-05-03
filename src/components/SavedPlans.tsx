@@ -42,7 +42,7 @@ const SavedPlans = () => {
 
   return (
     <Flex
-      flexDir="row"
+      flexDir={{ base: "column", md: "row" }}
       gap={3}
       color="#FFF"
       mt="50px"

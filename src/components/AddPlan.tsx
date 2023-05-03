@@ -60,7 +60,7 @@ const AddPlan = () => {
                   placeholder="what's your name?"
                   value={userName}
                   onChange={handleUserName}
-                  w={"60%"}
+                  w={{ base: "100%", md: "60%" }}
                 />
               </FormControl>
               <Text mt={4} mb={3}>
