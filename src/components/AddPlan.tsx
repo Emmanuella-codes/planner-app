@@ -50,7 +50,7 @@ const AddPlan = () => {
           <Heading fontFamily={"Raleway"} fontWeight="800">
             Welcome, {userName || "Guest"}
           </Heading>
-          <Box mt="3" fontFamily={"Signika"}>
+          <Box mt={"3"} fontFamily={"Signika"}>
             <form>
               <FormControl>
                 <Input
