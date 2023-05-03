@@ -4,26 +4,22 @@ import * as ReactDOM from "react-dom/client";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import usersReducer from "./features/UserPlan";
-import "./global.css"
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./store";
+import "./global.css";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");
 const root = ReactDOM.createRoot(container);
 
-const store = configureStore({
-  reducer: {
-    users: usersReducer,
-  },
-});
-
 root.render(
   <React.StrictMode>
     <ColorModeScript />
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
