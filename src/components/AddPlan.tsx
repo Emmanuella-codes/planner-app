@@ -74,6 +74,7 @@ const AddPlan = () => {
                     onChange={(e: any) => {
                       setUserPlan(e.target.value);
                     }}
+                    value={userPlan}
                   />
                 </Box>
                 <Box>
@@ -106,7 +107,11 @@ const AddPlan = () => {
                   <Button
                     className="save-btn"
                     bgColor={"transparent"}
-                    onClick={handleSavePlan}
+                    onClick={() => {
+                      handleSavePlan();
+                      setUserPlan([]);
+                      setSelectedCategory("");
+                    }}
                     fontWeight={700}
                     w={"33%"}
                     _hover={{ backgroundColor: "transparent" }}
