@@ -52,12 +52,7 @@ const SavedPlans = () => {
     >
       {userList.map((list: any, idx: number) => {
         return (
-          <Box
-            border="1px solid #000"
-            key={idx}
-            p={5}
-            w={{ base: "20%", md: "23%" }}
-          >
+          <Box border="1px solid #000" key={idx} p={5} w="full">
             <Text>{list.name}</Text>
             <RadioGroup defaultValue="1">
               <Radio value="1">{list.category}</Radio>
