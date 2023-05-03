@@ -108,7 +108,7 @@ const AddPlan = () => {
                     bgColor={"transparent"}
                     onClick={handleSavePlan}
                     fontWeight={700}
-                    w={"50%"}
+                    w={"33%"}
                     _hover={{ backgroundColor: "transparent" }}
                   >
                     SAVE
