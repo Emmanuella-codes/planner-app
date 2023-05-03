@@ -47,7 +47,8 @@ const SavedPlans = () => {
       color="#FFF"
       mt="50px"
       fontFamily={"Signika"}
-      maxW="80%"
+      maxW="85%"
+      flexWrap={"wrap"}
     >
       {userList.map((list: any, idx: number) => {
         return (
@@ -76,9 +77,22 @@ const SavedPlans = () => {
                         name="category"
                         value={selectedCategory}
                         onChange={handleCategoryChange}
+                        _hover={{ backgroundColor: "#000" }}
                       >
-                        <option value="personal">Personal</option>
-                        <option value="business">Business</option>
+                        <option
+                          className="dropdown-btn"
+                          value="personal"
+                          style={{ backgroundColor: "#252525" }}
+                        >
+                          Personal
+                        </option>
+                        <option
+                          className="dropdown-btn"
+                          value="business"
+                          style={{ backgroundColor: "#252525" }}
+                        >
+                          Business
+                        </option>
                       </Select>
                     </Box>
                     <Box>
