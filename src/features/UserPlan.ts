@@ -22,7 +22,7 @@ export const userPlanSlice = createSlice({
       state.value = state.value.filter((plan) => plan.id !== action.payload);
     },
     updatePlan: (state: { value: Plan[] }, action: PayloadAction<Plan>) => {
-      state.value.map((p) => {
+      state.value = state.value.map((p) => {
         if (p.id === action.payload.id) {
           return {
             ...p,

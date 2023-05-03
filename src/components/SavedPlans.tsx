@@ -49,9 +49,9 @@ const SavedPlans = () => {
       fontFamily={"Signika"}
       maxW="80%"
     >
-      {userList.map((list: any) => {
+      {userList.map((list: any, idx: number) => {
         return (
-          <Box border="1px solid #000" key={list} p={5}>
+          <Box border="1px solid #000" key={idx} p={5}>
             <Text>{list.name}</Text>
             <RadioGroup defaultValue="1">
               <Radio value="1">{list.category}</Radio>
