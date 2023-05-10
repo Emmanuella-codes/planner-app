@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addPlan } from "../features/UserPlan";
 import "./styles/index.css";
 import SavedPlans from "./SavedPlans";
+import Footer from "./Footer";
 
 const AddPlan = () => {
   const dispatch = useDispatch();
@@ -125,6 +126,7 @@ const AddPlan = () => {
         </Box>
         {/* display saved plans */}
         <SavedPlans />
+        <Footer />
       </Flex>
     </Container>
   );
